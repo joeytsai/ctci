@@ -1,4 +1,4 @@
-package com.googlejobapp.questions
+package ctci.chapters
 
 import java.util.*
 
