@@ -31,7 +31,9 @@ class Chapter02Test {
     @Test
     fun foo() {
         println("no dupes = $nodesNoDupes")
+        println("no dupes = ${Chapter02.Node.prettyToString(nodesNoDupes)}")
         println("with dupes = $nodesWithDupes")
+        println("with dupes = ${Chapter02.Node.prettyToString(nodesWithDupes)}")
         Assert.assertNotEquals("these linked lists are not the same", nodesNoDupes, nodesWithDupes)
 
         val none = array2nodes(arrayOf(2, 5, 6, 8, 9, 7))
@@ -39,9 +41,22 @@ class Chapter02Test {
     }
 
     @Test
-    fun testRemoveDupes() {
+    fun testRemoveDupesInt() {
         val removed = array2nodes(arrayOf(1, 2, 3, 4))
+        Assert.assertEquals("function test", removed, Chapter02.removeDupesInt(nodesWithDupes))
+        Assert.assertEquals("function'll do nutting -- Conor McGregor", nodesNoDupes, Chapter02.removeDupesInt(nodesNoDupes))
+
         Assert.assertEquals("function test", removed, Chapter02.removeDupes(nodesWithDupes))
         Assert.assertEquals("function'll do nutting -- Conor McGregor", nodesNoDupes, Chapter02.removeDupes(nodesNoDupes))
+    }
+
+    @Test
+    fun testRemoveDupesStrings() {
+        val removeNothing = Chapter02.Node.fromList(listOf("a", "b", "C", "DE")) ?: throw IllegalArgumentException("fromList() returned null")
+        Assert.assertEquals("remove nada", removeNothing, Chapter02.removeDupes(removeNothing))
+
+        val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a")) ?: throw IllegalArgumentException("no null")
+        Assert.assertEquals("one element", Chapter02.Node("a"), Chapter02.removeDupes(removeSomething))
+
     }
 }
