@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ctci.iml" filepath="$PROJECT_DIR$/.idea/ctci.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ctci_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ctci_main.iml" group="ctci" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ctci_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ctci_test.iml" group="ctci" />
     </modules>
   </component>
 </project>

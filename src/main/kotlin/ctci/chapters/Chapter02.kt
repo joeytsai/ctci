@@ -12,6 +12,8 @@ object Chapter02 {
 
     // made a data class for auto-toString()
     data class Node<T>(val data: T, var next: Node<T>? = null) {
+
+        // helpers for testing
         companion object {
             fun <T> toArrayList(head: Node<T>): ArrayList<T> {
                 val list = ArrayList<T>()
@@ -57,7 +59,7 @@ object Chapter02 {
         return list
     }
 
-    // first naive version, uses a set and copies return linked list of ints
+    // oh, its easy to use a type parameter. also, found a bug
     fun <T> removeDupes(head: Node<T>): Node<T> {
         val set = LinkedHashSet<T>()
         val list = Node(head.data)
@@ -74,5 +76,29 @@ object Chapter02 {
             curr = curr.next
         }
         return list
+    }
+
+    // without a buffer I can only thing of repeatedly going through the list
+    fun <T> removeDupesNoBuffer(head: Node<T>) {
+        removeDupesFromNode(head)
+        var curr = head.next
+        while (curr != null) {
+            removeDupesFromNode(curr)
+            curr = curr.next
+        }
+    }
+
+    private fun <T> removeDupesFromNode(head: Node<T>) {
+        val data = head.data
+        var curr = head.next
+        var prev = head
+        while (curr != null) {
+            if (data == curr.data) {
+                prev.next = curr.next
+            } else {
+                prev = curr
+            }
+            curr = curr.next
+        }
     }
 }

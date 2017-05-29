@@ -19,6 +19,16 @@ class Chapter02Test {
         return nodes.first()
     }
 
+    private fun <T> size(head: Chapter02.Node<T>): Int {
+        var count = 0
+        var curr: Chapter02.Node<T>? = head
+        while (curr != null) {
+            count += 1
+            curr = curr.next
+        }
+        return count
+    }
+
 
     val nodesWithDupes by lazy {
         array2nodes(arrayOf(1, 2, 3, 4, 4, 2))
@@ -57,6 +67,16 @@ class Chapter02Test {
 
         val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a")) ?: throw IllegalArgumentException("no null")
         Assert.assertEquals("one element", Chapter02.Node("a"), Chapter02.removeDupes(removeSomething))
+    }
 
+    @Test
+    fun testNoBuffer() {
+        val removeNothing = Chapter02.Node.fromList(listOf("a", "b", "C", "DE")) ?: throw IllegalArgumentException("fromList() returned null")
+        Chapter02.removeDupesNoBuffer(removeNothing)
+        Assert.assertEquals("4 elements", 4, size(removeNothing))
+
+        val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a")) ?: throw IllegalArgumentException("no null")
+        Chapter02.removeDupesNoBuffer(removeSomething)
+        Assert.assertEquals("one element", 1, size(removeSomething))
     }
 }
