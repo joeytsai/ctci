@@ -27,8 +27,7 @@ object Chapter02 {
 
             fun <T> prettyToString(head: Node<T>) = toArrayList(head).joinToString(separator = " -> ")
 
-            fun <T> fromList(list: List<T>): Node<T>? {
-                if (list.isEmpty()) return null
+            fun <T> fromList(list: List<T>): Node<T> {
                 val nodes: Array<Node<T>> = list.map { Node(it) }.toTypedArray()
                 nodes.forEachIndexed { index, node ->
                     if (index != list.lastIndex) {
@@ -38,7 +37,21 @@ object Chapter02 {
                 return nodes.first()
             }
 
+            fun <T> from(vararg data: T): Node<T> = fromList(data.asList())
+
+            fun <T> size(node: Node<T>): Int {
+                var count = 0
+                var curr: Node<T>? = node
+                while (curr != null) {
+                    count += 1
+                    curr = curr.next
+                }
+                return count
+            }
         }
+
+        val size: Int
+            get() = size(this)
     }
 
     // first naive version, uses a set and copies return linked list of ints

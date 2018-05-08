@@ -1,7 +1,9 @@
 package ctci.chapters
 
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.Test
+
 
 /**
  * Created by joey on 5/22/17.
@@ -44,39 +46,45 @@ class Chapter02Test {
         println("no dupes = ${Chapter02.Node.prettyToString(nodesNoDupes)}")
         println("with dupes = $nodesWithDupes")
         println("with dupes = ${Chapter02.Node.prettyToString(nodesWithDupes)}")
-        Assert.assertNotEquals("these linked lists are not the same", nodesNoDupes, nodesWithDupes)
+        assertNotEquals(nodesNoDupes, nodesWithDupes, "these linked lists are not the same")
 
         val none = array2nodes(arrayOf(2, 5, 6, 8, 9, 7))
-        Assert.assertEquals("these should be the same", none, nodesNoDupes)
+        assertEquals(none, nodesNoDupes, "these should be the same")
     }
 
     @Test
     fun testRemoveDupesInt() {
         val removed = array2nodes(arrayOf(1, 2, 3, 4))
-        Assert.assertEquals("function test", removed, Chapter02.removeDupesInt(nodesWithDupes))
-        Assert.assertEquals("function'll do nutting -- Conor McGregor", nodesNoDupes, Chapter02.removeDupesInt(nodesNoDupes))
+        assertEquals(removed, Chapter02.removeDupesInt(nodesWithDupes), "function test")
+        assertEquals(nodesNoDupes, Chapter02.removeDupesInt(nodesNoDupes), "function'll do nutting -- Conor McGregor")
 
-        Assert.assertEquals("function test", removed, Chapter02.removeDupes(nodesWithDupes))
-        Assert.assertEquals("function'll do nutting -- Conor McGregor", nodesNoDupes, Chapter02.removeDupes(nodesNoDupes))
+        assertEquals(removed, Chapter02.removeDupes(nodesWithDupes), "function test")
+        assertEquals(nodesNoDupes, Chapter02.removeDupes(nodesNoDupes), "function'll do nutting -- Conor McGregor")
     }
 
     @Test
     fun testRemoveDupesStrings() {
-        val removeNothing = Chapter02.Node.fromList(listOf("a", "b", "C", "DE")) ?: throw IllegalArgumentException("fromList() returned null")
-        Assert.assertEquals("remove nada", removeNothing, Chapter02.removeDupes(removeNothing))
+        val removeNothing = Chapter02.Node.fromList(listOf("a", "b", "C", "DE"))
+        assertEquals(removeNothing, Chapter02.removeDupes(removeNothing), "remove nada")
 
-        val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a")) ?: throw IllegalArgumentException("no null")
-        Assert.assertEquals("one element", Chapter02.Node("a"), Chapter02.removeDupes(removeSomething))
+        val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a"))
+        assertEquals(Chapter02.Node("a"), Chapter02.removeDupes(removeSomething), "one element")
     }
 
     @Test
     fun testNoBuffer() {
-        val removeNothing = Chapter02.Node.fromList(listOf("a", "b", "C", "DE")) ?: throw IllegalArgumentException("fromList() returned null")
+        val removeNothing = Chapter02.Node.fromList(listOf("a", "b", "C", "DE"))
         Chapter02.removeDupesNoBuffer(removeNothing)
-        Assert.assertEquals("4 elements", 4, size(removeNothing))
+        assertEquals(4, size(removeNothing), "4 elements")
 
-        val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a")) ?: throw IllegalArgumentException("no null")
+        val removeSomething = Chapter02.Node.fromList(listOf("a", "a", "a"))
         Chapter02.removeDupesNoBuffer(removeSomething)
-        Assert.assertEquals("one element", 1, size(removeSomething))
+        assertEquals(1, size(removeSomething), "one element")
+
+        val ababacdcd = Chapter02.Node.from("a", "b", "a", "b", "a", "c", "d", "c", "d")
+        assertEquals(9, ababacdcd.size, "before size")
+        Chapter02.removeDupesNoBuffer(ababacdcd)
+        assertEquals(4, ababacdcd.size, "before size")
+
     }
 }
