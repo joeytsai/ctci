@@ -2,3 +2,9 @@ build/
 .gradle/
 .idea/workspace.xml
 .idea/tasks.xml
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

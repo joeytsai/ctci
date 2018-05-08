@@ -1,7 +1,7 @@
 package ctci.chapters
 
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import java.util.*
 
 /**
@@ -17,24 +17,25 @@ class Chapter01Test {
         put("hamburge", true)
         put("hamburger", false)
     }
+
     @Test
     fun testAllUnique() {
         for ((input, expected) in uniqueTests) {
-            Assert.assertEquals("input=$input expected=$expected", expected, Chapter01.allUnique(input))
+            assertEquals(expected, Chapter01.allUnique(input), "input=$input expected=$expected")
         }
     }
 
     @Test
     fun testAllUnique2() {
         for ((input, expected) in uniqueTests) {
-            Assert.assertEquals("input=$input expected=$expected", expected, Chapter01.allUnique2(input))
+            assertEquals(expected, Chapter01.allUnique2(input), "input=$input expected=$expected")
         }
     }
 
     @Test
     fun testAllUnique3() {
         for ((input, expected) in uniqueTests) {
-            Assert.assertEquals("input=$input expected=$expected", expected, Chapter01.allUnique3(input))
+            assertEquals(expected, Chapter01.allUnique3(input), "input=$input expected=$expected")
         }
     }
 
@@ -48,7 +49,7 @@ class Chapter01Test {
     fun testCheckPermutation() {
         for ((k, v) in permutationTests) {
             val (one, two) = k
-            Assert.assertEquals("input=$k expected=$v", v, Chapter01.checkPermutation(one, two))
+            assertEquals(v, Chapter01.checkPermutation(one, two), "input=$k expected=$v")
         }
     }
 }
