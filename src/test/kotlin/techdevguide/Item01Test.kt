@@ -1,11 +1,13 @@
-package rando
+package techdevguide
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import techdevguide.Item01.isSubsequence
+import techdevguide.Item01.longestWord
 
-internal class TechdevguideKtTest {
+internal class Item01Test {
     private val exampleS = "abppplee"
     @Test
     fun examples() {
